@@ -102,8 +102,8 @@ typedef unsigned char byte;
 #define GET_BIT_FROM_Y(_y) ( (0b1 << PIXELS_PER_BYTE-1) >> (y % PIXELS_PER_BYTE) )
 
 // NO-OP Definition
-#ifdef __AVR__
-// #define NOP(); __asm__("nop\n\t"); 
+#if defined(__AVR__) || defined(ESP8266) 
+  #define NOP(); __asm__("nop\n\t"); 
 #endif
 
 // The HT1632 requires at least 50 ns between the change in data and the rising
