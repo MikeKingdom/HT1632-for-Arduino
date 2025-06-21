@@ -35,13 +35,13 @@ typedef unsigned char byte;
 //  settings in the else block:
 
 // SureElectronics 32X16 Bicolor LED Dot Matrix Unit Board
-#define TYPE_3216_BICOLOR 1
+// #define TYPE_3216_BICOLOR 1
 
 // SureElectronics 32X08 Monochrome LED Dot Matrix Unit Board
-// #define TYPE_3208_MONO 1
+#define TYPE_3208_MONO 1
 
 // SureElectronics 24x16 Monochrome LED Dot Matrix Unit Board
-#define TYPE_2416_MONO 1
+// #define TYPE_2416_MONO 1
 
 // SureElectronics 16X08 Bicolor (emulation)
 // #define TYPE_1608_DEBUG 1
@@ -102,7 +102,10 @@ typedef unsigned char byte;
 #define GET_BIT_FROM_Y(_y) ( (0b1 << PIXELS_PER_BYTE-1) >> (y % PIXELS_PER_BYTE) )
 
 // NO-OP Definition
-#define NOP(); __asm__("nop\n\t"); 
+#ifdef __AVR__
+// #define NOP(); __asm__("nop\n\t"); 
+#endif
+
 // The HT1632 requires at least 50 ns between the change in data and the rising
 // edge of the WR signal. On a 16MHz processor, this provides 62.5ns per NOP. 
 

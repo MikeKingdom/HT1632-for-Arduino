@@ -248,7 +248,7 @@ void HT1632Class::drawImage(const byte * img, uint8_t width, uint8_t height, int
 			uint8_t copyInNextStep = 8 - max((src_y & 0b111), (dst_y & 0b111));
 
 			// Limit this by the height of the image:
-			copyInNextStep = min(copyInNextStep, (height - src_y));
+			copyInNextStep = min<uint8_t>(copyInNextStep, (height - src_y));
 
 			// Prepare the bitmask with the number of bits that need to be copied.
 			uint8_t dst_copyMask = (0b1 << copyInNextStep) - 1;
